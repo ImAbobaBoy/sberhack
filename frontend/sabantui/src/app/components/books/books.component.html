@@ -1,0 +1,74 @@
+<app-mobile-header></app-mobile-header>
+<div class="books-container">
+   <h2>Рекомендуемые книги</h2>
+  <!-- Горизонтальный слайдер -->
+  <div class="slider">
+<!--    <tui-carousel-->
+<!--      [draggable]="true"-->
+<!--      [duration]="3000"-->
+<!--      [itemsCount]="1"-->
+<!--      [(index)]="currentIndex">-->
+<!--      <div *tuiItem><img src="carouselItems[0]" /></div>-->
+<!--      <div *tuiItem><img src="carouselItems[1]" /></div>-->
+<!--      <div *tuiItem><img src="carouselItems[2]" /></div>-->
+<!--    </tui-carousel>-->
+    <tui-carousel
+      [draggable]="true"
+      [duration]="4000"
+      [(index)]="currentIndex"
+    >
+      <ng-container *ngFor="let item of carouselItems">
+        <tui-island *tuiItem>
+          <img [ngSrc]="item.image" width="100px" height="100px" alt="test"/>
+        </tui-island>
+      </ng-container>
+    </tui-carousel>
+    <tui-pagination
+      size="s"
+      class="pagination"
+      [length]="carouselItems.length"
+      [(index)]="currentIndex"
+    ></tui-pagination>
+  </div>
+
+  <!-- Каталог книг с фильтром и поиском -->
+  <div class="catalog">
+    <!-- Фильтр и поиск -->
+    <div class="filters">
+      <tui-input [(ngModel)]="searchQuery"></tui-input>
+      <form class="b-form">
+        <tui-select
+          tuiTextfieldSize="s"
+          [formControl]="testValue"
+        >
+          <!-- Label for the select element -->
+          Жанр
+
+          <!-- Input field inside the select -->
+          <input
+            placeholder="Выберите ваш жанр"
+            tuiTextfield
+          />
+
+          <!-- Data list wrapper for the options -->
+          <tui-data-list-wrapper
+            *tuiDataList
+            [items]="categories"
+          ></tui-data-list-wrapper>
+        </tui-select>
+      </form>
+    </div>
+
+    <!-- Список книг -->
+    <div class="book-list">
+      <div *ngFor="let book of filteredBooks" class="book-item">
+        <img [src]="book.image" alt="Book image" />
+        <div class="book-info">
+          <h3>{{ book.title }}</h3>
+          <p>{{ book.author }}</p>
+          <p>{{ book.dates }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
