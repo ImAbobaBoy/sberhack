@@ -41,6 +41,7 @@ class ProjectSettings(BaseSettings):
     FRONTEND_HOST: str
     SECRET_KEY: str
     ACCESS_TOKEN_EXPIRE_MINUTES: int
+    DEFAULT_QUERY_LIMIT: int = Field(default=100)
 
     model_config = SettingsConfigDict(
         env_prefix="PROJECT_",

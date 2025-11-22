@@ -14,7 +14,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --frozen --no-install-project
 
 # Копируем код приложения
-COPY backend/Makefile /app/Makefile
+COPY ./Makefile /app/Makefile
 COPY backend/src/app /app/backend/src/app
 COPY backend/src/migrations /app/src/migrations
 COPY backend/.env /app/

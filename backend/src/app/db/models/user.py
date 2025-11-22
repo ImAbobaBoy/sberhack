@@ -8,9 +8,9 @@ from src.app.const import Variants
 
 
 class Role(Variants):
-    ADMIN = "admin"
-    EMPLOYEE = "employee"
     USER = "user"
+    EMPLOYEE = "employee"
+    ADMIN = "admin"
 
 class UserBase(SQLModel):
     name: str = Field(max_length=255, nullable=False)
@@ -30,3 +30,23 @@ class User(UserBase, table=True):
 
     id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
     created_at: datetime.datetime = Field(default_factory=datetime.datetime.now)
+
+
+class UserCreate(UserBase):
+    ...
+
+
+class UserUpdate(SQLModel):
+    name: str | None = Field(default=None, max_length=255)
+    surname: str | None = Field(default=None, max_length=255)
+    patronymic: str | None = Field(default=None, max_length=255)
+
+
+class UserPublic(UserBase):
+    id: uuid.UUID
+    created_at: datetime.datetime
+
+
+class UsersPublic(SQLModel):
+    data: list[UserPublic]
+    count: int

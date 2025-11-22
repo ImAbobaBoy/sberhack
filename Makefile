@@ -22,7 +22,7 @@ dev-up: ## Запустить сервер в режиме разработки 
 
 .PHONY: lint
 lint: ## Запустить линтер (ruff)
-	$(UV_RUN) ruff check ./src --fix
+	$(UV_RUN) ruff check ./backend/src --fix
 
 .PHONY: migration
 migration:
