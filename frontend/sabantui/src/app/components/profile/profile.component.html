@@ -1,10 +1,11 @@
 <app-mobile-header></app-mobile-header>
 <app-profile-header
-  [lastName]="'Иванов'"
-  [firstName]="'Петр'"
-  [libraryCardNumber]="'123456789'"
+  [lastName]="user.lastName"
+  [firstName]="user.firstName"
+  [libraryCardNumber]="user.libraryCardNumber"
+  [email]="user.email"
   [badge]="{ books: 5, events: 3 }">
-></app-profile-header>
+</app-profile-header>
 
 <app-profile-tabs
     [books]="books"

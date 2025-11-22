@@ -3,6 +3,13 @@ import { ProfileHeaderComponent } from '../profile-haeader/profile-haeader.compo
 import { Book, Event, ProfileTabsComponent } from '../profile-tabs/profile-tabs.component';
 import { MobileHeaderComponent } from '../mobile-header/mobile-header.component';
 
+interface User {
+  firstName: string;
+  lastName: string;
+  email: string;
+  libraryCardNumber: string;
+}
+
 @Component({
   selector: 'app-profile',
   imports: [ProfileHeaderComponent, ProfileTabsComponent, MobileHeaderComponent],
@@ -11,6 +18,14 @@ import { MobileHeaderComponent } from '../mobile-header/mobile-header.component'
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
+  // Мок пользователя
+  user: User = {
+    firstName: 'Петр',
+    lastName: 'Иванов',
+    email: 'petr.ivanov@example.com',
+    libraryCardNumber: '123456789'
+  };
+
   // Пример данных книг
   books: Book[] = [
     {
