@@ -1,0 +1,112 @@
+<div class="profile-tabs">
+  <!-- Переключатель табов -->
+  <div class="tabs-header">
+    <button 
+      class="tab-button" 
+      [class.active]="activeTab === 'books'"
+      (click)="switchTab('books')">
+      Мои книги
+    </button>
+    <button 
+      class="tab-button" 
+      [class.active]="activeTab === 'events'"
+      (click)="switchTab('events')">
+      Мероприятия
+    </button>
+  </div>
+
+  <!-- Контент табов -->
+  <div class="tabs-content">
+    <!-- Таб "Мои книги" -->
+    @if (activeTab === 'books') {
+      <div class="tab-panel books-tab">
+        @if (books.length === 0) {
+          <div class="empty-state">
+            <div class="empty-icon">📚</div>
+            <h3>Нет взятых книг</h3>
+            <p>Здесь будут отображаться ваши текущие книги</p>
+          </div>
+        } @else {
+          <div class="books-list">
+            @for (book of books; track book.id) {
+              <div class="book-card">
+                <div class="book-cover">
+                  @if (book.coverUrl) {
+                    <img [src]="book.coverUrl" [alt]="book.title" class="cover-image">
+                  } @else {
+                    <div class="cover-placeholder">📖</div>
+                  }
+                </div>
+                
+                <div class="book-info">
+                  <h3 class="book-title">{{ book.title }}</h3>
+                  <p class="book-author">{{ book.author }}</p>
+                  <div class="book-dates">
+                    <span class="date-label">Срок:</span>
+                    {{ formatDateRange(book.startDate, book.endDate) }}
+                  </div>
+                </div>
+
+                <div class="book-status">
+                  @if (book.endDate < dateNow) {
+                    <div class="status-badge inactive">Просрочено</div>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    }
+
+    <!-- Таб "Мероприятия" -->
+    @if (activeTab === 'events') {
+      <div class="tab-panel events-tab">
+        @if (events.length === 0) {
+          <div class="empty-state">
+            <div class="empty-icon">🎉</div>
+            <h3>Нет мероприятий</h3>
+            <p>Здесь будут отображаться ваши мероприятия</p>
+          </div>
+        } @else {
+          <div class="events-list">
+            @for (event of events; track event.id) {
+              <div class="event-card" [class.today]="isEventToday(event.date)">
+                <div class="event-date">
+                  <div class="date-day">{{ event.date.getDate() }}</div>
+                  <div class="date-month">
+                    {{ event.date.toLocaleDateString('ru-RU', { month: 'short' }) }}
+                  </div>
+                </div>
+
+                <div class="event-info">
+                  <h3 class="event-title">{{ event.title }}</h3>
+                  <div class="event-time">
+                    <span class="time-icon">🕒</span>
+                    {{ event.time }}
+                  </div>
+                  @if (event.location) {
+                    <div class="event-location">
+                      <span class="location-icon">📍</span>
+                      {{ event.location }}
+                    </div>
+                  }
+                </div>
+
+                <div class="event-status">
+                  @if (isEventToday(event.date)) {
+                    <div class="status-badge today">Сегодня</div>
+                  } @else if (isEventUpcoming(event.date)) {
+                    <div class="status-badge upcoming">Предстоит</div>
+                  } @else {
+                    <div class="status-badge past">Прошедшее</div>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>

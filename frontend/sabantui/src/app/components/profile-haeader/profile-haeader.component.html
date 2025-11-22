@@ -1,0 +1,24 @@
+<div class="profile-header">
+  <!-- Основная информация -->
+  <div class="profile-info">
+    <h1 class="profile-name">
+      {{ lastName }} {{ firstName }}
+    </h1>
+    <p class="library-card">
+      Читательский билет №{{ libraryCardNumber }}
+    </p>
+  </div>
+
+  <!-- Бейдж с статистикой -->
+  <div class="profile-badge">
+    <div class="badge-item">
+      <span class="badge-count">{{ badge.books }}</span>
+      <span class="badge-label">книги</span>
+    </div>
+    <div class="badge-divider">|</div>
+    <div class="badge-item">
+      <span class="badge-count">{{ badge.events }}</span>
+      <span class="badge-label">события</span>
+    </div>
+  </div>
+</div>
