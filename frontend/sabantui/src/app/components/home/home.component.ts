@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { TuiButtonModule, TuiSvgModule } from "@taiga-ui/core";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -27,6 +28,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   currentWordIndex: number = 0;
   logoPath: string = 'assets/Vector.svg';
   private intervalId: any;
+  private router = inject(Router);
 
   ngOnInit() {
     this.startAnimation();
@@ -42,6 +44,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.intervalId = setInterval(() => {
       this.currentWordIndex = (this.currentWordIndex + 1) % this.words.length;
     }, 3000);
+  }
+
+  toEmailLogin() {
+    this.router.navigate(['/email-step']);
   }
 
   get currentWord(): string {

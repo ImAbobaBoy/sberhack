@@ -1,0 +1,41 @@
+<div class="login-container">
+  <div class="login-card">
+    <!-- Заголовок -->
+    <h2 class="login-title">Войти</h2>
+    
+    <!-- Форма -->
+    <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      
+      <!-- Поле для почты -->
+      <div class="form-group">
+        <label for="email" class="form-label">Email</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          class="form-input"
+          placeholder="Введите вашу почту"
+          [class.error]="emailInvalid"
+        >
+        <div class="error-message" *ngIf="emailInvalid">
+          <span *ngIf="loginForm.get('email')?.errors?.['required']">
+            Поле обязательно для заполнения
+          </span>
+          <span *ngIf="loginForm.get('email')?.errors?.['email']">
+            Введите корректный email
+          </span>
+        </div>
+      </div>
+
+      <!-- Кнопка получения кода -->
+      <button
+        type="submit"
+        class="submit-btn"
+        [disabled]="loginForm.invalid || isLoading"
+      >
+        <span *ngIf="!isLoading">Получить код</span>
+        <span *ngIf="isLoading" class="loading">Отправка...</span>
+      </button>
+    </form>
+  </div>
+</div>

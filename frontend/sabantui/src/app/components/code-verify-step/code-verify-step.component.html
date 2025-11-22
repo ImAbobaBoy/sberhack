@@ -1,0 +1,74 @@
+<div class="login-container">
+  <div class="login-card">
+    <!-- Заголовок -->
+    <h2 class="login-title">Введите код</h2>
+    
+    <!-- Информация о отправке -->
+    <div class="code-info">
+      <p class="code-text">Код отправлен на Вашу почту</p>
+      <button type="button" class="change-email-btn" (click)="changeEmail()">
+        Изменить email
+      </button>
+    </div>
+
+    <!-- Форма -->
+    <form class="login-form" [formGroup]="codeForm" (ngSubmit)="onSubmit()">
+      
+      <!-- Поле для кода -->
+      <div class="form-group">
+        <label for="code" class="form-label">Код подтверждения</label>
+        <input
+          id="code"
+          type="text"
+          formControlName="code"
+          class="form-input"
+          placeholder="Введите 6-значный код"
+          maxlength="6"
+          [class.error]="codeInvalid"
+        >
+        <div class="error-message" *ngIf="codeInvalid">
+          <span *ngIf="codeForm.get('code')?.errors?.['required']">
+            Введите код подтверждения
+          </span>
+          <span *ngIf="codeForm.get('code')?.errors?.['minlength'] || codeForm.get('code')?.errors?.['maxlength']">
+            Код должен содержать 6 цифр
+          </span>
+          <span *ngIf="codeForm.get('code')?.errors?.['pattern']">
+            Код должен содержать только цифры
+          </span>
+        </div>
+      </div>
+
+      <!-- Таймер повторной отправки -->
+      <div class="timer-section" *ngIf="timeLeft > 0">
+        <p class="timer-text">Запросить новый код через {{ timeLeft }} сек</p>
+      </div>
+
+      <!-- Ссылка повторной отправки -->
+      <div class="resend-section" *ngIf="timeLeft === 0">
+        <button type="button" class="resend-btn" (click)="resendCode()" [disabled]="isResending">
+          <span *ngIf="!isResending">Отправить код повторно</span>
+          <span *ngIf="isResending" class="loading">Отправка...</span>
+        </button>
+      </div>
+
+      <!-- Кнопка подтверждения -->
+      <button
+        type="submit"
+        class="submit-btn"
+        [disabled]="codeForm.invalid || isLoading"
+      >
+        <span *ngIf="!isLoading">Подтвердить</span>
+        <span *ngIf="isLoading" class="loading">Проверка...</span>
+      </button>
+    </form>
+
+    <!-- Дополнительная информация -->
+    <div class="login-footer">
+      <p class="footer-text">
+        Не получили код? Проверьте папку «Спам» или 
+        <a href="#" class="footer-link">обратитесь в поддержку</a>
+      </p>
+    </div>
+  </div>
+</div>
