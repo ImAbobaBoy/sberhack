@@ -13,17 +13,67 @@
     <div class="hero-content">
       <h2 class="hero-title">
         Ваш доступ к
+        <br>
         <span 
           class="changing-word" 
           [@wordAnimation]="currentWordIndex">
           {{ currentWord }}
         </span>
       </h2>
+      <button
+        class="login-btn"
+        type="button"
+      >
+        Войти
+      </button>
+      <span class="warn-text">
+        Для привязки читательского билета требуется посещение библиотеки
+      </span>
     </div>
   </section>
 
   <!-- Остальной контент страницы -->
   <section class="content-section">
-    <!-- Здесь может быть остальной контент страницы -->
+    <div class="content-container">
+      <!-- Контейнер 1 -->
+      <div class="info-card">
+        <div class="card-icon">
+          <tui-svg src="tuiIconBook"></tui-svg>
+          <h3 class="card-title">Большая коллекция</h3>
+        </div>
+        <div class="card-content">
+        
+          <p class="card-text">
+            Все городские события собраны в одном месте — лекции, квизы, встречи, показы. Записываешься в пару тапов, получаешь напоминания и рекомендации под свой вайб. Тут уже давно не «тихо»: жизнь реально бурлит.
+          </p>
+        </div>
+      </div>
+
+      <!-- Контейнер 2 -->
+      <div class="info-card">
+        <div class="card-icon">
+          <tui-svg src="tuiIconCalendar"></tui-svg>
+          <h3 class="card-title">Мероприятия</h3>
+        </div>
+        <div class="card-content">
+          <p class="card-text">
+            Рекомендации под твой вкус, умная выдача и бронь, чтобы не упустить книгу мечты. История чтения всегда под рукой, а уведомления спасут от штрафов и забытых дедлайнов.
+          </p>
+        </div>
+      </div>
+
+      <!-- Контейнер 3 -->
+      <div class="info-card">
+        <div class="card-icon">
+          <tui-svg src="tuiIconMonitor"></tui-svg>
+          <h3 class="card-title">Коворкинг</h3>
+        </div>
+        <div class="card-content">
+          <p class="card-text">
+            Современное рабочее пространство без лишних ритуалов. Тихие зоны, розетки, хороший свет — всё для твоей фокусировки.
+          </p>
+        </div>
+      </div>
+    </div>
   </section>
 </div>
