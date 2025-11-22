@@ -13,12 +13,19 @@
     <div class="hero-content">
       <h2 class="hero-title">
         Ваш доступ к
+        <br>
         <span 
           class="changing-word" 
           [@wordAnimation]="currentWordIndex">
           {{ currentWord }}
         </span>
       </h2>
+      <button
+        class="login-btn"
+        type="button"
+      >
+        Войти
+      </button>
     </div>
   </section>
 
