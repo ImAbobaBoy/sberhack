@@ -1,0 +1,69 @@
+<app-mobile-header></app-mobile-header>
+<div class="books-container">
+  <h2 class="heading">Рекомендуемые книги</h2>
+  <div class="slider">
+    <tui-carousel
+      [draggable]="true"
+      [duration]="4000"
+      [(index)]="currentIndex"
+      [itemsCount]="2"
+    >
+      <ng-container *ngFor="let book of books">
+        <tui-island *tuiItem>
+          <div class="carousel-item">
+            <img [src]="book.image" alt="Book Image" class="book-image" />
+            <div class="book-info">
+              <h3>{{ book.title }}</h3>
+              <p>{{ book.author }}</p>
+            </div>
+          </div>
+        </tui-island>
+      </ng-container>
+    </tui-carousel>
+    <tui-pagination
+      size="s"
+      class="pagination"
+      [length]="books.length"
+      [(index)]="currentIndex"
+    ></tui-pagination>
+  </div>
+
+  <!-- Каталог книг с фильтром и поиском -->
+  <div class="catalog">
+    <!-- Фильтр и поиск -->
+    <div class="filters">
+      <tui-input class="filter-search" [(ngModel)]="searchQuery" aria-placeholder=""></tui-input>
+      <form class="b-form">
+        <tui-select
+          tuiTextfieldSize="s"
+          [formControl]="testValue"
+          [(ngModel)]="selectedCategory"
+        >
+          Жанр
+          <input
+            placeholder="Выберите ваш жанр"
+            tuiTextfield
+          />
+
+          <!-- Data list wrapper for the options -->
+          <tui-data-list-wrapper
+            *tuiDataList
+            [items]="categories"
+          ></tui-data-list-wrapper>
+        </tui-select>
+      </form>
+    </div>
+
+    <!-- Список книг -->
+    <div class="book-list">
+      <div *ngFor="let book of filteredBooks" class="book-item">
+        <img [src]="book.image" alt="Book image" />
+        <div class="book-info">
+          <h3>{{ book.title }}</h3>
+          <p>{{ book.author }}</p>
+          <p>{{ book.dates }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
