@@ -1,0 +1,26 @@
+<nav class="footer-tabs">
+  <button class="tab" [class.active]="activeTab === 'home'" (click)="navigate('home')">
+    <span class="icon">🏠</span>
+    <span class="label">Главная</span>
+  </button>
+
+  <button class="tab" [class.active]="activeTab === 'books'" (click)="navigate('books')">
+    <span class="icon">📚</span>
+    <span class="label">Книги</span>
+  </button>
+
+  <button class="tab" [class.active]="activeTab === 'events'" (click)="navigate('events')">
+    <span class="icon">🎉</span>
+    <span class="label">События</span>
+  </button>
+
+  <button class="tab" [class.active]="activeTab === 'coworking'" (click)="navigate('coworking')">
+    <span class="icon">💼</span>
+    <span class="label">Коворкинг</span>
+  </button>
+
+  <button class="tab" [class.active]="activeTab === 'profile'" (click)="navigate('profile')">
+    <span class="icon">👤</span>
+    <span class="label">Профиль</span>
+  </button>
+</nav>

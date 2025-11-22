@@ -1,0 +1,81 @@
+.mobile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 8px;
+  background-color: #fff;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-sizing: border-box; /* обязательно */
+}
+
+
+.mobile-header .menu-btn,
+.mobile-header .notifications-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  width: 40px; /* фиксированная ширина */
+  height: 40px; /* можно добавить, чтобы квадратные кнопки */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* не сжимать */
+}
+
+.mobile-header .title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  margin: 0 8px; /* отступы между кнопками */
+  min-width: 0; /* важно для обрезки текста при маленьких экранах */
+}
+
+
+.mobile-header .title .main-title {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.mobile-header .title .subtitle {
+  font-size: 12px;
+  color: #666;
+}
+
+/* Выпадающее меню */
+.dropdown-menu {
+  position: absolute;
+  top: 56px; /* высота хедера */
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  z-index: 999;
+}
+
+.dropdown-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-menu li {
+  border-bottom: 1px solid #eee;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+  color: #333;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #f0f0f0;
+}
