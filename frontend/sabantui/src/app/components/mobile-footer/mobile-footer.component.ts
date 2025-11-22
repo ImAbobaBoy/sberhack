@@ -22,6 +22,6 @@ export class MobileFooterComponent {
 
   navigate(tab: string) {
     this.activeTab = tab;
-    this.router.navigate([tab]);
+    this.router.navigate([`/${tab}`]);
   }
 }
