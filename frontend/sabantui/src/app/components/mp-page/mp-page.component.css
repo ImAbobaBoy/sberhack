@@ -1,0 +1,266 @@
+.event-page-container {
+  min-height: 100vh;
+  background: #f5f5f5;
+  /* Убираем padding-bottom так как кнопка больше не фиксированная */
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  padding: 6px;
+  margin-right: 10px;
+  cursor: pointer;
+  color: #2563eb;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.back-button:active {
+  background-color: #f1f5f9;
+}
+
+.page-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+/* Афиша */
+.event-poster {
+  height: 30vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.event-poster.no-image {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.poster-image {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.image-placeholder {
+  font-size: 20px;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.poster-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.poster-text {
+  font-size: 48px;
+  font-weight: 700;
+  opacity: 0.7;
+}
+
+/* Основная информация */
+.event-main-info {
+  background: white;
+  padding: 20px 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.event-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 16px 0;
+  line-height: 1.3;
+}
+
+.event-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.meta-item svg {
+  color: #6b7280;
+  flex-shrink: 0;
+}
+
+.meta-text {
+  font-size: 14px;
+  color: #374151;
+  font-weight: 500;
+}
+
+/* Кнопка в хедере */
+.header-action-button {
+  margin-top: 16px;
+}
+
+.btn-register {
+  width: 100%;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #2563eb;
+  color: white;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+}
+
+.btn-register:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 4px rgba(37, 99, 235, 0.4);
+}
+
+.btn-register.registered {
+  background: #ef4444;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+}
+
+.btn-register.registered:active {
+  box-shadow: 0 1px 4px rgba(239, 68, 68, 0.4);
+}
+
+/* Описание и детали */
+.event-description,
+.event-details {
+  background: white;
+  padding: 20px 16px;
+  margin-top: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #374151;
+  margin: 0 0 12px 0;
+}
+
+.description-text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #4b5563;
+  margin: 0;
+}
+
+.details-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  font-size: 14px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.detail-value {
+  font-size: 14px;
+  color: #111827;
+  font-weight: 600;
+  text-align: right;
+  max-width: 60%;
+}
+
+.detail-value.registered {
+  color: #10b981;
+}
+
+/* Уведомление */
+.notification {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+  z-index: 1000;
+  animation: slideDown 0.3s ease;
+}
+
+.notification-content {
+  background: #10b981;
+  color: white;
+  padding: 16px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  text-align: center;
+  max-width: 300px;
+}
+
+.notification-text {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Адаптивность */
+@media (max-width: 340px) {
+  .event-title {
+    font-size: 20px;
+  }
+  
+  .poster-text {
+    font-size: 36px;
+  }
+  
+  .btn-register {
+    padding: 12px 16px;
+    font-size: 15px;
+  }
+}

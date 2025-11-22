@@ -1,0 +1,74 @@
+<div class="book-page-container">
+  <!-- Хедер страницы -->
+  <header class="page-header">
+    <button class="back-button" (click)="goBack()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+    </button>
+    <h1 class="page-title">Информация о книге</h1>
+  </header>
+
+  <!-- Обложка книги -->
+  <div class="book-cover">
+    <div class="cover-placeholder">
+      <span class="cover-text">{{ book.title.slice(0, 2) }}</span>
+    </div>
+  </div>
+
+  <!-- Основная информация с кнопками -->
+  <div class="book-main-info">
+    <h1 class="book-title">{{ book.title }}</h1>
+    <p class="book-author">{{ book.author }}</p>
+    
+    <div class="book-meta">
+      <span class="genre-tag">{{ book.genre }}</span>
+      <span class="year-tag">{{ book.year_published }} год</span>
+    </div>
+
+    <!-- Кнопки действий -->
+    <div class="book-action-buttons" *ngIf="showButtons">
+      <button class="btn-primary" (click)="takeBook()">Взять</button>
+      <button class="btn-secondary" (click)="reserveBook()">Забронировать</button>
+    </div>
+  </div>
+
+  <!-- Детальная информация -->
+  <div class="book-details">
+    <h2 class="section-title">Детали</h2>
+    
+    <div class="details-grid">
+      <div class="detail-item">
+        <span class="detail-label">Издательство</span>
+        <span class="detail-value">{{ book.publisher }}</span>
+      </div>
+      
+      <div class="detail-item">
+        <span class="detail-label">Количество страниц</span>
+        <span class="detail-value">{{ book.pages_count }}</span>
+      </div>
+      
+      <div class="detail-item" *ngIf="book.location_published">
+        <span class="detail-label">Место издания</span>
+        <span class="detail-value">{{ book.location_published }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Описание (мок) -->
+  <div class="book-description">
+    <h2 class="section-title">Описание</h2>
+    <p class="description-text">
+      Это описание книги будет загружено из базы данных. 
+      Здесь будет находиться аннотация, краткое содержание 
+      или другая полезная информация о произведении.
+    </p>
+  </div>
+
+  <!-- Уведомление -->
+  <div class="notification" *ngIf="showNotification">
+    <div class="notification-content">
+      <span class="notification-text">{{ notificationMessage }}</span>
+    </div>
+  </div>
+</div>
