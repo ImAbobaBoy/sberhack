@@ -107,6 +107,7 @@
   width: 100px;
   height: 50px;
   border-radius: 8px;
+  margin-bottom: 1.25rem;
 }
 
 .login-btn:hover {
@@ -114,4 +115,29 @@
   height: 50px;
   border-radius: 8px;
   cursor: pointer;
+}
+
+.warn-text {
+  width: 75%;
+  font-size: 13px;
+  font-weight: 400;
+  text-align: left;
+  color: white;
+}
+
+.card-icon {
+  display: flex;
+}
+
+.card-icon h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.info-card {
+  margin-bottom: 28px;
+}
+
+.card-text {
+  margin: 0;
 }
