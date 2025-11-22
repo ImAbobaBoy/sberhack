@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { Location } from '@angular/common'; // Добавляем Location
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 export interface Event {
   id: number;
@@ -13,10 +14,19 @@ export interface Event {
   image?: string;
 }
 
+// Мок пользователя
+interface User {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  isEmployee: boolean;
+}
+
 @Component({
   selector: 'app-event-page',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, FormsModule],
   templateUrl: './mp-page.component.html',
   styleUrls: ['./mp-page.component.css']
 })
@@ -26,6 +36,15 @@ export class MpPageComponent implements OnInit {
   showNotification = false;
   notificationMessage = '';
   showButton = true;
+  
+  // Мок текущего пользователя
+  currentUser: User = {
+    id: 1,
+    firstName: 'Иван',
+    lastName: 'Петров',
+    email: 'ivan.petrov@library.ru',
+    isEmployee: true
+  };
 
   // Моки мероприятий
   private events: Event[] = [
@@ -47,19 +66,29 @@ export class MpPageComponent implements OnInit {
     }
   ];
 
+  // Режим редактирования
+  isEditing = false;
+  
+  // Переменные для формы редактирования
+  editedName: string = '';
+  editedDescription: string = '';
+  editedLocation: string = '';
+  editedStartTime: string = '';
+  editedEndTime: string = '';
+
   constructor(
     private route: ActivatedRoute,
-    private location: Location // Добавляем Location в конструктор
+    private location: Location
   ) {}
 
   ngOnInit() {
     const eventId = Number(this.route.snapshot.paramMap.get('id'));
     this.event = this.events.find(e => e.id === eventId) || this.events[0];
+    this.initializeEditForm();
   }
 
-  // Метод для кнопки назад
   goBack(): void {
-    this.location.back(); // Возврат на предыдущую страницу
+    this.location.back();
   }
 
   formatDate(date: Date): string {
@@ -77,6 +106,7 @@ export class MpPageComponent implements OnInit {
     }).format(date);
   }
 
+  // Для обычных пользователей - запись на мероприятие
   toggleRegistration() {
     if (!this.isRegistered) {
       this.isRegistered = true;
@@ -88,6 +118,42 @@ export class MpPageComponent implements OnInit {
     
     this.showNotification = true;
     this.hideNotificationAfterDelay();
+  }
+
+  // Для сотрудников - редактирование мероприятия
+  toggleEdit() {
+    this.isEditing = !this.isEditing;
+    if (this.isEditing) {
+      this.initializeEditForm();
+    }
+  }
+
+  // Инициализация формы редактирования
+  private initializeEditForm() {
+    this.editedName = this.event.name;
+    this.editedDescription = this.event.description;
+    this.editedLocation = this.event.location;
+    this.editedStartTime = this.event.start_time.toISOString().slice(0, 16);
+    this.editedEndTime = this.event.end_time ? this.event.end_time.toISOString().slice(0, 16) : '';
+  }
+
+  saveChanges() {
+    // Сохраняем изменения
+    this.event.name = this.editedName;
+    this.event.description = this.editedDescription;
+    this.event.location = this.editedLocation;
+    this.event.start_time = new Date(this.editedStartTime);
+    this.event.end_time = this.editedEndTime ? new Date(this.editedEndTime) : null;
+    
+    this.isEditing = false;
+    this.notificationMessage = 'Изменения сохранены';
+    this.showNotification = true;
+    this.hideNotificationAfterDelay();
+  }
+
+  cancelEdit() {
+    this.isEditing = false;
+    this.initializeEditForm();
   }
 
   private hideNotificationAfterDelay() {

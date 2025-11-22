@@ -1,7 +1,9 @@
 .event-page-container {
   min-height: 100vh;
   background: #f5f5f5;
-  /* Убираем padding-bottom так как кнопка больше не фиксированная */
+  padding: 16px;
+  /* Убираем padding-bottom так как кнопки теперь в потоке */
+  padding-bottom: 80px;
 }
 
 .page-header {
@@ -118,9 +120,9 @@
   font-weight: 500;
 }
 
-/* Кнопка в хедере */
-.header-action-button {
-  margin-top: 16px;
+/* Кнопки в основном блоке */
+.header-action-buttons {
+  margin-top: 20px;
 }
 
 .btn-register {
@@ -149,6 +151,25 @@
 
 .btn-register.registered:active {
   box-shadow: 0 1px 4px rgba(239, 68, 68, 0.4);
+}
+
+.btn-edit {
+  width: 100%;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #f59e0b;
+  color: white;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+}
+
+.btn-edit:active {
+  background: #d97706;
+  transform: translateY(1px);
 }
 
 /* Описание и детали */
@@ -210,6 +231,84 @@
   color: #10b981;
 }
 
+/* Стили для формы редактирования */
+.edit-form {
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.form-input, .form-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.form-input:focus, .form-textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 80px;
+  font-family: inherit;
+}
+
+/* Кнопки редактирования для сотрудников */
+.edit-action-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-save, .btn-cancel {
+  padding: 14px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1;
+}
+
+.btn-save {
+  background: #10b981;
+  color: white;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+.btn-save:active {
+  background: #059669;
+  transform: translateY(1px);
+}
+
+.btn-cancel {
+  background: #6b7280;
+  color: white;
+  box-shadow: 0 2px 8px rgba(107, 114, 128, 0.3);
+}
+
+.btn-cancel:active {
+  background: #4b5563;
+  transform: translateY(1px);
+}
+
 /* Уведомление */
 .notification {
   position: fixed;
@@ -251,6 +350,10 @@
 
 /* Адаптивность */
 @media (max-width: 340px) {
+  .event-page-container {
+    padding: 12px;
+  }
+  
   .event-title {
     font-size: 20px;
   }
@@ -259,7 +362,10 @@
     font-size: 36px;
   }
   
-  .btn-register {
+  .btn-register,
+  .btn-edit,
+  .btn-save,
+  .btn-cancel {
     padding: 12px 16px;
     font-size: 15px;
   }

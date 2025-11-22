@@ -19,60 +19,131 @@
     </div>
   </div>
 
-  <!-- Основная информация с кнопкой -->
+  <!-- Основная информация С кнопками -->
   <div class="event-main-info">
-    <h1 class="event-title">{{ event.name }}</h1>
+    <!-- Режим просмотра -->
+    <div *ngIf="!isEditing">
+      <h1 class="event-title">{{ event.name }}</h1>
+      
+      <div class="event-meta">
+        <div class="meta-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          <span class="meta-text">{{ formatDate(event.start_time) }}</span>
+        </div>
+
+        <div class="meta-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          <span class="meta-text">
+            {{ formatTime(event.start_time) }}
+            <span *ngIf="event.end_time"> - {{ formatTime(event.end_time) }}</span>
+          </span>
+        </div>
+
+        <div class="meta-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <span class="meta-text">{{ event.location }}</span>
+        </div>
+      </div>
+
+      <!-- Кнопки действий под местом проведения -->
+      <div class="header-action-buttons" *ngIf="showButton">
+        <!-- Для обычных пользователей -->
+        <button 
+          *ngIf="!currentUser.isEmployee"
+          class="btn-register" 
+          [class.registered]="isRegistered"
+          (click)="toggleRegistration()">
+          {{ isRegistered ? 'Отменить запись' : 'Записаться' }}
+        </button>
+        
+        <!-- Для сотрудников в режиме просмотра -->
+        <button 
+          *ngIf="currentUser.isEmployee"
+          class="btn-edit"
+          (click)="toggleEdit()">
+          Редактировать мероприятие
+        </button>
+      </div>
+    </div>
+
+    <!-- Режим редактирования (только для сотрудников) -->
+    <div *ngIf="isEditing && currentUser.isEmployee" class="edit-form">
+      <h2 class="section-title">Редактирование мероприятия</h2>
+      
+      <!-- Кнопки редактирования для сотрудников (в том же месте) -->
+          <div class="header-action-buttons" *ngIf="currentUser.isEmployee && isEditing">
+            <div class="edit-action-buttons">
+                <button class="btn-save" (click)="saveChanges()">Сохранить</button>
+                <button class="btn-cancel" (click)="cancelEdit()">Отмена</button>
+            </div>
+          </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Название мероприятия</label>
+        <input 
+          type="text" 
+          class="form-input" 
+          [(ngModel)]="editedName"
+          placeholder="Название мероприятия">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Описание</label>
+        <textarea 
+          class="form-textarea" 
+          [(ngModel)]="editedDescription"
+          placeholder="Описание мероприятия"
+          rows="4"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Место проведения</label>
+        <input 
+          type="text" 
+          class="form-input" 
+          [(ngModel)]="editedLocation"
+          placeholder="Место проведения">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Дата и время начала</label>
+        <input 
+          type="datetime-local" 
+          class="form-input" 
+          [(ngModel)]="editedStartTime">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Дата и время окончания (необязательно)</label>
+        <input 
+          type="datetime-local" 
+          class="form-input" 
+          [(ngModel)]="editedEndTime">
+      </div>
+    </div>
+
     
-    <div class="event-meta">
-      <div class="meta-item">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-          <line x1="16" y1="2" x2="16" y2="6"></line>
-          <line x1="8" y1="2" x2="8" y2="6"></line>
-          <line x1="3" y1="10" x2="21" y2="10"></line>
-        </svg>
-        <span class="meta-text">{{ formatDate(event.start_time) }}</span>
-      </div>
-
-      <div class="meta-item">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="10"></circle>
-          <polyline points="12 6 12 12 16 14"></polyline>
-        </svg>
-        <span class="meta-text">
-          {{ formatTime(event.start_time) }}
-          <span *ngIf="event.end_time"> - {{ formatTime(event.end_time) }}</span>
-        </span>
-      </div>
-
-      <div class="meta-item">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-          <circle cx="12" cy="10" r="3"></circle>
-        </svg>
-        <span class="meta-text">{{ event.location }}</span>
-      </div>
-    </div>
-
-    <!-- Кнопка записи в хедере -->
-    <div class="header-action-button" *ngIf="showButton">
-      <button 
-        class="btn-register" 
-        [class.registered]="isRegistered"
-        (click)="toggleRegistration()">
-        {{ isRegistered ? 'Отменить запись' : 'Записаться' }}
-      </button>
-    </div>
-  </div>
 
   <!-- Описание -->
-  <div class="event-description">
+  <div class="event-description" *ngIf="!isEditing">
     <h2 class="section-title">Описание</h2>
     <p class="description-text">{{ event.description }}</p>
   </div>
 
   <!-- Детали -->
-  <div class="event-details">
+  <div class="event-details" *ngIf="!isEditing">
     <h2 class="section-title">Детали</h2>
     
     <div class="details-grid">
@@ -94,11 +165,16 @@
         </span>
       </div>
 
-      <div class="detail-item">
+      <div class="detail-item" *ngIf="!currentUser.isEmployee">
         <span class="detail-label">Статус</span>
         <span class="detail-value" [class.registered]="isRegistered">
           {{ isRegistered ? 'Вы записаны' : 'Свободные места' }}
         </span>
+      </div>
+
+      <div class="detail-item" *ngIf="currentUser.isEmployee">
+        <span class="detail-label">Статус записи</span>
+        <span class="detail-value">Всего записей: 15</span>
       </div>
     </div>
   </div>
