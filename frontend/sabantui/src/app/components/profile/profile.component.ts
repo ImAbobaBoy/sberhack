@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { ProfileHeaderComponent } from '../profile-haeader/profile-haeader.component';
 import { Book, Event, ProfileTabsComponent } from '../profile-tabs/profile-tabs.component';
+import { MobileHeaderComponent } from '../mobile-header/mobile-header.component';
 
 @Component({
   selector: 'app-profile',
-  imports: [ProfileHeaderComponent, ProfileTabsComponent],
+  imports: [ProfileHeaderComponent, ProfileTabsComponent, MobileHeaderComponent],
   standalone: true,
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'

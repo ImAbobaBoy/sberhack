@@ -1,1 +1,29 @@
-<p>home works!</p>
+<div class="home-container">
+  <!-- Header с логотипом -->
+  <header class="header">
+    <div class="logo-container">
+      <!-- <img src="/assets/logo.png" alt="Логотип" class="logo"> -->
+       <tui-svg [src]="logoPath"></tui-svg>
+      <h1 class="site-title">Библиотека №14</h1>
+    </div>
+  </header>
+
+  <!-- Основной контент с фоновым изображением -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h2 class="hero-title">
+        Ваш доступ к
+        <span 
+          class="changing-word" 
+          [@wordAnimation]="currentWordIndex">
+          {{ currentWord }}
+        </span>
+      </h2>
+    </div>
+  </section>
+
+  <!-- Остальной контент страницы -->
+  <section class="content-section">
+    <!-- Здесь может быть остальной контент страницы -->
+  </section>
+</div>
