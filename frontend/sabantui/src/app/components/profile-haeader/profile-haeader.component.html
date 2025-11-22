@@ -9,16 +9,50 @@
     </p>
   </div>
 
-  <!-- Бейдж с статистикой -->
-  <div class="profile-badge">
-    <div class="badge-item">
-      <span class="badge-count">{{ badge.books }}</span>
-      <span class="badge-label">книги</span>
+  <!-- Правая часть с бейджем и кнопкой QR -->
+  <div class="profile-right-section">
+    <!-- Бейдж с статистикой -->
+    <div class="profile-badge">
+      <div class="badge-item">
+        <span class="badge-count">{{ badge.books }}</span>
+        <span class="badge-label">книги</span>
+      </div>
+      <div class="badge-divider">|</div>
+      <div class="badge-item">
+        <span class="badge-count">{{ badge.events }}</span>
+        <span class="badge-label">события</span>
+      </div>
     </div>
-    <div class="badge-divider">|</div>
-    <div class="badge-item">
-      <span class="badge-count">{{ badge.events }}</span>
-      <span class="badge-label">события</span>
+
+    <!-- Кнопка QR-кода -->
+    <button class="qr-button" (click)="generateQrCode()" title="Показать QR-код">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+        <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+        <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+        <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+        <path d="M10 3v4"></path>
+        <path d="M10 17v4"></path>
+        <path d="M3 10h4"></path>
+        <path d="M17 10h4"></path>
+        <path d="M14 10h4"></path>
+        <path d="M21 14v4"></path>
+      </svg>
+      QR-код
+    </button>
+  </div>
+
+  <!-- Модальное окно QR-кода -->
+  <div class="qr-modal" *ngIf="showQrModal" (click)="closeQrModal()">
+    <div class="qr-modal-content" (click)="$event.stopPropagation()">
+      <div class="qr-modal-header">
+        <h3>Ваш QR-код</h3>
+        <button class="close-button" (click)="closeQrModal()">&times;</button>
+      </div>
+      <div class="qr-code-container">
+        <img [src]="qrCodeUrl" alt="QR Code" class="qr-code-image">
+        <p class="qr-email">Email: {{ email }}</p>
+      </div>
     </div>
   </div>
 </div>
