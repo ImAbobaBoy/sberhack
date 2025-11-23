@@ -3,10 +3,8 @@
   font-weight: 500;
 }
 
-.header {
-  position: absolute;
-  top: 0;
-  left: 0;
+.mobile-header {
+  height: 70px;
   width: 70%;
   padding: 20px 0px 0px 20px;
   z-index: 100;
@@ -19,7 +17,21 @@
   gap: 15px;
 }
 
-.logo {
-  height: 50px;
-  width: auto;
+.site-title {
+  color: black;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Убираем стили у ссылки */
+a {
+  text-decoration: none; /* Убираем подчеркивание */
+  display: flex;         /* Делаем ссылку блочным элементом, как контейнер */
+  align-items: center;   /* Выравниваем по вертикали */
+  gap: 15px;             /* Сохраняем отступы между логотипом и текстом */
+}
+
+a:hover {
+  text-decoration: none; /* Убираем подчеркивание при наведении */
 }

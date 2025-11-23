@@ -1,7 +1,6 @@
 <header class="mobile-header">
-  <div class="logo-container">
-    <!-- <img src="/assets/logo.png" alt="Логотип" class="logo"> -->
+  <a [routerLink]="'/home'" class="logo-container"> <!-- Привязка к маршруту через строку -->
     <tui-svg [src]="logoPath"></tui-svg>
     <h1 class="site-title">Библиотека №14</h1>
-  </div>
+  </a>
 </header>
