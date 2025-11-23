@@ -1,28 +1,7 @@
 <header class="mobile-header">
-  <!-- Кнопка гамбургер -->
-  <button class="menu-btn" (click)="toggleMenu()">
-    ☰
-  </button>
-
-  <!-- Заголовок и подзаголовок -->
-  <div class="title">
-    <div class="main-title">Библиотека №14</div>
-    <div class="subtitle">Культурный центр</div>
-  </div>
-
-  <!-- Кнопка уведомлений -->
-  <button class="notifications-btn" (click)="openNotifications()">
-    🔔
-  </button>
-
-  <!-- Выпадающее меню -->
-  <div class="dropdown-menu" *ngIf="menuOpen">
-    <ul>
-      <li><a routerLink="/home">Главная</a></li>
-      <li><a routerLink="/books">Книги</a></li>
-      <li><a routerLink="/events">События</a></li>
-      <li><a routerLink="/coworking">Коворкинг</a></li>
-      <li><a routerLink="/profile">Профиль</a></li>
-    </ul>
+  <div class="logo-container">
+    <!-- <img src="/assets/logo.png" alt="Логотип" class="logo"> -->
+    <tui-svg [src]="logoPath"></tui-svg>
+    <h1 class="site-title">Библиотека №14</h1>
   </div>
 </header>
