@@ -82,12 +82,11 @@
       <h2 class="section-title">Редактирование мероприятия</h2>
       
       <!-- Кнопки редактирования для сотрудников (в том же месте) -->
-          <div class="header-action-buttons" *ngIf="currentUser.isEmployee && isEditing">
-            <div class="edit-action-buttons">
-                <button class="btn-save" (click)="saveChanges()">Сохранить</button>
-                <button class="btn-cancel" (click)="cancelEdit()">Отмена</button>
-            </div>
-          </div>
+      <div class="header-action-buttons" *ngIf="currentUser.isEmployee && isEditing">
+        <div class="edit-action-buttons">
+            <button class="btn-save" (click)="saveChanges()">Сохранить</button>
+            <button class="btn-cancel" (click)="cancelEdit()">Отмена</button>
+        </div>
       </div>
 
       <div class="form-group">
@@ -133,8 +132,7 @@
           [(ngModel)]="editedEndTime">
       </div>
     </div>
-
-    
+  </div>
 
   <!-- Описание -->
   <div class="event-description" *ngIf="!isEditing">
