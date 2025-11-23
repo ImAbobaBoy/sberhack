@@ -100,7 +100,90 @@ export class BooksComponent {
       location_published: 'Лондон',
       image: 'assets/1984.jpg',
       category: 'Антиутопия'
-    }
+    },
+    {
+    id: 4,
+    title: 'Три товарища',
+    author: 'Эрих Мария Ремарк',
+    pages_count: 480,
+    publisher: 'Ullstein Verlag',
+    genre: 'Роман',
+    year_published: 1936,
+    location_published: 'Берлин',
+    image: 'assets/tri_tovar.jpg',
+    category: 'Романы'
+  },
+  {
+    id: 5,
+    title: 'Над пропастью во ржи',
+    author: 'Джером Д. Сэлинджер',
+    pages_count: 288,
+    publisher: 'Little, Brown and Company',
+    genre: 'Роман воспитания',
+    year_published: 1951,
+    location_published: 'Нью-Йорк',
+    image: 'assets/nad_prop.jpg',
+    category: 'Романы'
+  },
+  {
+    id: 6,
+    title: 'Цветы для Элджернона',
+    author: 'Дэниел Киз',
+    pages_count: 304,
+    publisher: 'Harcourt',
+    genre: 'Фантастика',
+    year_published: 1966,
+    location_published: 'Нью-Йорк',
+    image: 'assets/tsvety.jpg',
+    category: 'Фантастика'
+  },
+  {
+    id: 7,
+    title: 'Собачье сердце',
+    author: 'Михаил Булгаков',
+    pages_count: 128,
+    publisher: 'Государственное издательство',
+    genre: 'Сатира',
+    year_published: 1925,
+    location_published: 'Москва',
+    image: 'assets/sobach_serd.jpg',
+    category: 'Классика'
+  },
+  {
+    id: 8,
+    title: 'О дивный новый мир',
+    author: 'Олдос Хаксли',
+    pages_count: 288,
+    publisher: 'Chatto & Windus',
+    genre: 'Антиутопия',
+    year_published: 1932,
+    location_published: 'Лондон',
+    image: 'assets/novyi_mir.jpg',
+    category: 'Антиутопия'
+  },
+  {
+    id: 9,
+    title: 'Пикник на обочине',
+    author: 'Аркадий и Борис Стругацкие',
+    pages_count: 224,
+    publisher: 'АСТ',
+    genre: 'Научная фантастика',
+    year_published: 1972,
+    location_published: 'Москва',
+    image: 'assets/picnic_oboch.jpg',
+    category: 'Фантастика'
+  },
+  {
+    id: 10,
+    title: 'Старик и море',
+    author: 'Эрнест Хемингуэй',
+    pages_count: 128,
+    publisher: 'Charles Scribner’s Sons',
+    genre: 'Повесть',
+    year_published: 1952,
+    location_published: 'Нью-Йорк',
+    image: 'assets/starik_i_more.jpg',
+  }
   ];
 
   searchQuery = '';
