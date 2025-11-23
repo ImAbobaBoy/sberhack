@@ -14,7 +14,7 @@ import {
   TuiPaginationModule,
   TuiSelectModule
 } from '@taiga-ui/kit';
-import {Router, RouterModule} from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MobileHeaderComponent } from '../mobile-header/mobile-header.component';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 
@@ -26,7 +26,6 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
     TuiAlertModule,
     TuiButtonModule,
     TuiInputModule,
-    TuiSelectModule,
     TuiCarouselModule,  // Импортируем модуль для слайдера
     FormsModule,         // Импортируем для ngModel
     RouterModule,
@@ -44,15 +43,13 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 })
 export class EventsComponent {
   carouselItems = [
-    {image: 'assets/event1.jpg'},
-    {image: 'assets/event2.jpg'},
-    {image: 'assets/event3.jpg'}
+    { image: 'assets/event1.jpg' },
+    { image: 'assets/event2.jpg' },
+    { image: 'assets/event3.jpg' }
   ];
 
+  isEmployee = true;
   currentIndex = 0;
-
-  categories = ['Литературные встречи', 'Встречи с авторами'];
-  testValue = new FormControl();
 
   // Моки для событий
   events = [
@@ -77,19 +74,20 @@ export class EventsComponent {
   ];
 
   searchQuery = '';
-  selectedCategory = '';
 
   get filteredEvents() {
     return this.events.filter(event => {
       return (
-        (this.selectedCategory ? event.location === this.selectedCategory : true) &&
         (this.searchQuery ? event.name.toLowerCase().includes(this.searchQuery.toLowerCase()) : true)
       );
     });
   }
 
-  constructor(private router: Router) {
+  goToCreateEventPage() {
+    this.router.navigate(['/create-event']);
   }
+
+  constructor(private router: Router) {}
 
   // Функция для перехода на страницу отдельного мероприятия
   goToEventPage(eventId: number): void {

@@ -1,7 +1,15 @@
 <app-mobile-header></app-mobile-header>
 <div class="events-container">
-  <h2 class="heading">Рекомендуемые события</h2>
-  <div class="slider">
+  <!-- Показать заголовок и слайдер только если isEmployee == false -->
+  <h2 class="heading" *ngIf="!isEmployee">Рекомендуемые события</h2>
+
+  <!-- Показать кнопку "Создать событие" только если isEmployee == true -->
+  <div *ngIf="isEmployee">
+    <button class="create-event-btn" (click)="goToCreateEventPage()">Создать событие</button>
+  </div>
+
+  <!-- Показываем слайдер с событиями только если isEmployee == false -->
+  <div *ngIf="!isEmployee" class="slider">
     <tui-carousel
       [draggable]="true"
       [(index)]="currentIndex"
@@ -29,7 +37,13 @@
 
   <!-- Фильтр и поиск -->
   <div class="filters">
-    <tui-input class="filter-search" [(ngModel)]="searchQuery" aria-placeholder=""></tui-input>
+    <!-- Поиск по названию события -->
+    <tui-input
+      class="filter-search"
+      [(ngModel)]="searchQuery"
+      placeholder="Поиск по событиям"
+      aria-placeholder="Поиск по названию события"
+    ></tui-input>
   </div>
 
   <!-- Список событий -->

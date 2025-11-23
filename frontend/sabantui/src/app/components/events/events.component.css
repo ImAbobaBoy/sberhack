@@ -145,3 +145,29 @@
 tui-pagination {
   margin-top: 10px;
 }
+
+.create-event-btn {
+  display: block;
+  width: 100%; /* Кнопка будет занимать всю доступную ширину */
+  max-width: 300px; /* Максимальная ширина кнопки */
+  padding: 14px 30px; /* Увеличиваем размер кнопки */
+  font-size: 16px; /* Увеличиваем размер шрифта */
+  border-radius: 8px; /* Убираем или увеличиваем радиус скругления */
+  background-color: #2563eb; /* Цвет фона */
+  color: white; /* Цвет текста */
+  border: none; /* Убираем рамку */
+  cursor: pointer; /* Курсор при наведении */
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); /* Добавляем теневой эффект */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Плавные переходы */
+  margin: 20px auto; /* Центрируем кнопку и добавляем отступ сверху и снизу */
+}
+
+.create-event-btn:hover {
+  background-color: #1d4ed8; /* Меняем цвет фона при наведении */
+  transform: scale(1.05); /* Легкое увеличение при наведении */
+}
+
+.create-event-btn:active {
+  background-color: #1d4ed8; /* Цвет фона при клике */
+  transform: translateY(2px); /* Псевдокнопка с анимацией нажатия */
+}
