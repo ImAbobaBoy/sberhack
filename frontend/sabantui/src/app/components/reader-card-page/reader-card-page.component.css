@@ -1,0 +1,295 @@
+.reader-card-container {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding: 16px;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  margin: -16px -16px 20px -16px;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  padding: 6px;
+  margin-right: 10px;
+  cursor: pointer;
+  color: #2563eb;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.back-button:active {
+  background-color: #f1f5f9;
+}
+
+.page-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.card-content {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+/* Стили для успешной регистрации */
+.card-info {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.success-icon {
+  color: #10b981;
+  margin-bottom: 16px;
+}
+
+.success-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 8px 0;
+}
+
+.success-text {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Стили формы */
+.registration-form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.form-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 8px 0;
+  text-align: center;
+}
+
+.form-description {
+  font-size: 14px;
+  color: #6b7280;
+  text-align: center;
+  margin: 0 0 24px 0;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-input:read-only {
+  background-color: #f9fafb;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+.form-hint {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 4px;
+  font-style: italic;
+}
+
+/* Кнопка регистрации */
+.action-button {
+  margin-top: 24px;
+}
+
+.btn-register {
+  width: 100%;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #2563eb;
+  color: white;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+}
+
+.btn-register:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 0 1px 4px rgba(37, 99, 235, 0.4);
+}
+
+.btn-register:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Стили для уже зарегистрированных */
+.already-registered {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.user-info {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 24px;
+  border: 1px solid #e2e8f0;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.info-item:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.info-value {
+  font-size: 14px;
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.status-active {
+  color: #10b981;
+}
+
+.next-steps {
+  background: #fffbeb;
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px solid #fed7aa;
+}
+
+.steps-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #92400e;
+  margin: 0 0 12px 0;
+}
+
+.steps-list {
+  margin: 0;
+  padding-left: 20px;
+  color: #92400e;
+}
+
+.steps-list li {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+
+.steps-list li:last-child {
+  margin-bottom: 0;
+}
+
+/* Уведомление */
+.notification {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+  z-index: 1000;
+  animation: slideDown 0.3s ease;
+}
+
+.notification-content {
+  background: #10b981;
+  color: white;
+  padding: 16px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  text-align: center;
+  max-width: 300px;
+}
+
+.notification-text {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Адаптивность */
+@media (max-width: 340px) {
+  .reader-card-container {
+    padding: 12px;
+  }
+  
+  .page-header {
+    margin: -12px -12px 16px -12px;
+  }
+  
+  .card-content {
+    padding: 16px;
+  }
+  
+  .btn-register {
+    padding: 14px 20px;
+    font-size: 15px;
+  }
+}
