@@ -1,0 +1,111 @@
+<div class="reader-card-container">
+  <!-- Хедер страницы -->
+  <header class="page-header">
+    <button class="back-button" (click)="goBack()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+    </button>
+    <h1 class="page-title">Читательский билет</h1>
+  </header>
+
+  <!-- Основной контент -->
+  <div class="card-content">
+    <!-- Информация о билете -->
+    <div class="card-info" *ngIf="isRegistered">
+      <div class="success-icon">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+      </div>
+      <h2 class="success-title">Билет зарегистрирован</h2>
+      <p class="success-text">
+        Ваш читательский билет успешно зарегистрирован в системе библиотеки.
+      </p>
+    </div>
+
+    <!-- Форма регистрации -->
+    <div class="registration-form" *ngIf="!isRegistered">
+      <h2 class="form-title">Регистрация читательского билета</h2>
+      <p class="form-description">
+        Заполните данные для получения читательского билета
+      </p>
+
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input 
+          type="email" 
+          class="form-input" 
+          [(ngModel)]="email"
+          placeholder="Введите ваш email"
+          [readonly]="email">
+        <div class="form-hint" *ngIf="email">
+          Email заполнен из QR-кода
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Фамилия</label>
+        <input 
+          type="text" 
+          class="form-input" 
+          [(ngModel)]="lastName"
+          placeholder="Введите вашу фамилию">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Имя</label>
+        <input 
+          type="text" 
+          class="form-input" 
+          [(ngModel)]="firstName"
+          placeholder="Введите ваше имя">
+      </div>
+
+      <!-- Кнопка регистрации -->
+      <div class="action-button">
+        <button 
+          class="btn-register" 
+          (click)="registerCard()"
+          [disabled]="!email || !firstName || !lastName">
+          Зарегистрировать билет
+        </button>
+      </div>
+    </div>
+
+    <!-- Информация для уже зарегистрированных -->
+    <div class="already-registered" *ngIf="isRegistered">
+      <div class="user-info">
+        <div class="info-item">
+          <span class="info-label">Email:</span>
+          <span class="info-value">{{ email }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">ФИО:</span>
+          <span class="info-value">{{ lastName }} {{ firstName }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Статус:</span>
+          <span class="info-value status-active">Активен</span>
+        </div>
+      </div>
+      
+      <div class="next-steps">
+        <h3 class="steps-title">Что дальше?</h3>
+        <ul class="steps-list">
+          <li>Посетите библиотеку для активации билета</li>
+          <li>Предъявите номер билета при получении книг</li>
+          <li>Используйте билет для записи на мероприятия</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Уведомление -->
+  <div class="notification" *ngIf="showNotification">
+    <div class="notification-content">
+      <span class="notification-text">{{ notificationMessage }}</span>
+    </div>
+  </div>
+</div>
