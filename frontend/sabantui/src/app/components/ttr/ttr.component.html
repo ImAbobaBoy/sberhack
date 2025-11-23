@@ -11,7 +11,7 @@
               <!-- Обложка книги -->
               <div class="book-cover">
                 @if (book.image) {
-                  <img [src]="book.image" alt="Обложка {{book.title}}" class="cover-image" />
+                  <img [ngSrc]="book.image" alt="Обложка {{book.title}}" class="cover-image" width="232px" height="320px" />
                 } @else {
                   <div class="cover-placeholder">
                     📚
