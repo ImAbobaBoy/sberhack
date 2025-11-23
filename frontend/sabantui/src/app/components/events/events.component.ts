@@ -70,7 +70,34 @@ export class EventsComponent {
       end_time: new Date('2024-02-05T21:30:00'),
       location: 'Конференц-зал',
       image: 'assets/author_meet.jpg'
-    }
+    },
+    {
+    id: 3,
+    name: 'Поэтический слэм',
+    description: 'Открытая сцена для любителей поэзии: читаем, слушаем, соревнуемся.',
+    start_time: new Date('2024-02-10T17:00:00'),
+    end_time: new Date('2024-02-10T19:00:00'),
+    location: 'Малая сцена',
+    image: 'assets/poet_slam.jpg'
+  },
+  {
+    id: 4,
+    name: 'Ночь настольных игр',
+    description: 'Ламповая встреча для тех, кто любит «Каркассон», шахматы и любые настолки.',
+    start_time: new Date('2024-02-12T20:00:00'),
+    end_time: new Date('2024-02-13T00:00:00'),
+    location: 'Коворкинг',
+    image: 'assets/tabletopgames.jpg'
+  },
+  {
+    id: 5,
+    name: 'Кинопоказ по книге',
+    description: 'Смотрим экранизацию и обсуждаем, почему книга всё равно лучше.',
+    start_time: new Date('2024-02-15T18:30:00'),
+    end_time: new Date('2024-02-15T21:00:00'),
+    location: 'Медиа-зал',
+    image: 'assets/book_cinema.jpg'
+  },
   ];
 
   searchQuery = '';
