@@ -1,7 +1,7 @@
 <app-mobile-header></app-mobile-header>
 <div class="books-container">
   <h2 class="heading">Рекомендуемые книги</h2>
-  <div class="slider">
+  <div class="slider" >
     <tui-carousel
       [draggable]="true"
       [duration]="4000"
@@ -10,7 +10,7 @@
     >
       <ng-container *ngFor="let book of books">
         <tui-island *tuiItem>
-          <div class="carousel-item">
+          <div class="carousel-item" (click)="goToBookPage(book.id)">
             <img [src]="book.image" alt="Book Image" class="book-image" />
             <div class="book-info">
               <h3>{{ book.title }}</h3>
@@ -56,12 +56,12 @@
 
     <!-- Список книг -->
     <div class="book-list">
-      <div *ngFor="let book of filteredBooks" class="book-item">
+      <div *ngFor="let book of filteredBooks" class="book-item" (click)="goToBookPage(book.id)">
         <img [src]="book.image" alt="Book image" />
         <div class="book-info">
           <h3>{{ book.title }}</h3>
           <p>{{ book.author }}</p>
-          <p>{{ book.dates }}</p>
+          <p>{{ book.year_published }}</p>
         </div>
       </div>
     </div>

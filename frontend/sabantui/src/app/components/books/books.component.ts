@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';  // Для ngModel
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';  // Для ngModel
 import {
   TuiRootModule,
   TuiDialogModule,
@@ -14,9 +14,9 @@ import {
   TuiPaginationModule,
   TuiSelectModule
 } from '@taiga-ui/kit';
-import { RouterModule } from '@angular/router';
+import {Router, RouterModule} from '@angular/router';
 import { MobileHeaderComponent } from '../mobile-header/mobile-header.component';
-import {CommonModule, NgOptimizedImage} from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-books',
@@ -50,15 +50,57 @@ export class BooksComponent {
     { image: 'assets/book1.jpg' }
   ];
 
+  constructor(private router: Router) {}
+
+  goToBookPage(bookId: number): void {
+    this.router.navigate(['/book', bookId]).then(() => {
+      window.scrollTo(0, 0);  // Прокручиваем страницу на верх
+    });
+  }
+
   currentIndex = 0;
 
   categories = ['Фантастика', 'Романы', 'Хоррор'];
   testValue = new FormControl();
 
+  // Обновленный массив books с мока книг
   books = [
-    { title: 'Book 1', author: 'Author 1', dates: '01.01.2024 - 01.01.2025', image: 'assets/book1.jpg', category: 'Фантастика' },
-    { title: 'Book 2', author: 'Author 2', dates: '01.01.2024 - 01.01.2025', image: 'assets/book2.jpg', category: 'Романы' },
-    { title: 'Book 3', author: 'Author 3', dates: '01.01.2024 - 01.01.2025', image: 'assets/book3.jpg', category: 'Хоррор' }
+    {
+      id: 1,
+      title: 'Мастер и Маргарита',
+      author: 'Михаил Булгаков',
+      pages_count: 480,
+      publisher: 'АСТ',
+      genre: 'Роман',
+      year_published: 1967,
+      location_published: 'Москва',
+      image: 'assets/book1.jpg',
+      category: 'Романы'
+    },
+    {
+      id: 2,
+      title: 'Преступление и наказание',
+      author: 'Федор Достоевский',
+      pages_count: 672,
+      publisher: 'Эксмо',
+      genre: 'Психологический роман',
+      year_published: 1866,
+      location_published: 'Санкт-Петербург',
+      image: 'assets/book2.jpg',
+      category: 'Романы'
+    },
+    {
+      id: 3,
+      title: '1984',
+      author: 'Джордж Оруэлл',
+      pages_count: 328,
+      publisher: 'Penguin Books',
+      genre: 'Антиутопия',
+      year_published: 1949,
+      location_published: 'Лондон',
+      image: 'assets/book3.jpg',
+      category: 'Антиутопия'
+    }
   ];
 
   searchQuery = '';

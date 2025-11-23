@@ -1,0 +1,57 @@
+<app-mobile-header></app-mobile-header>
+<div class="events-container">
+  <h2 class="heading">Рекомендуемые события</h2>
+  <div class="slider">
+    <tui-carousel
+      [draggable]="true"
+      [(index)]="currentIndex"
+      [itemsCount]="1"
+    >
+      <ng-container *ngFor="let event of events">
+        <tui-island *tuiItem>
+          <div class="carousel-item" (click)="goToEventPage(event.id)">
+            <img [src]="event.image" alt="Event Image" class="event-image" />
+            <div class="event-info">
+              <h3>{{ event.name }}</h3>
+              <p>{{ event.start_time | date: 'shortTime' }} - {{ event.end_time | date: 'shortTime' }}</p>
+            </div>
+          </div>
+        </tui-island>
+      </ng-container>
+    </tui-carousel>
+    <tui-pagination
+      size="s"
+      class="pagination"
+      [length]="events.length"
+      [(index)]="currentIndex"
+    ></tui-pagination>
+  </div>
+
+  <!-- Фильтр и поиск -->
+  <div class="filters">
+    <tui-input class="filter-search" [(ngModel)]="searchQuery" aria-placeholder=""></tui-input>
+    <form class="b-form">
+      <tui-select
+        tuiTextfieldSize="s"
+        [formControl]="testValue"
+        [(ngModel)]="selectedCategory"
+      >
+        Место
+        <input placeholder="Выберите место" tuiTextfield />
+        <tui-data-list-wrapper *tuiDataList [items]="categories"></tui-data-list-wrapper>
+      </tui-select>
+    </form>
+  </div>
+
+  <!-- Список событий -->
+  <div class="event-list">
+    <div *ngFor="let event of filteredEvents" class="event-item" (click)="goToEventPage(event.id)">
+      <img [src]="event.image" alt="Event image" />
+      <div class="event-info">
+        <h3>{{ event.name }}</h3>
+        <p>{{ event.start_time | date: 'shortDate' }}</p>
+        <p>{{ event.location }}</p>
+      </div>
+    </div>
+  </div>
+</div>
