@@ -24,12 +24,33 @@
     <div class="book-meta">
       <span class="genre-tag">{{ book.genre }}</span>
       <span class="year-tag">{{ book.year_published }} год</span>
+      <!-- Статус ремонта для сотрудников -->
+      <span *ngIf="currentUser.isEmployee && book.isUnderRepair" class="repair-tag">В ремонте</span>
     </div>
 
     <!-- Кнопки действий -->
     <div class="book-action-buttons" *ngIf="showButtons">
-      <button class="btn-primary" (click)="takeBook()">Взять</button>
-      <button class="btn-secondary" (click)="reserveBook()">Забронировать</button>
+      <!-- Для обычных пользователей -->
+      <div *ngIf="!currentUser.isEmployee" class="user-buttons">
+        <button class="btn-primary" (click)="takeBook()">Взять</button>
+        <button class="btn-secondary" (click)="reserveBook()">Забронировать</button>
+      </div>
+      
+      <!-- Для сотрудников -->
+      <div *ngIf="currentUser.isEmployee" class="employee-buttons">
+        <button 
+          *ngIf="!book.isUnderRepair"
+          class="btn-repair" 
+          (click)="sendToRepair()">
+          Отправить на ремонт
+        </button>
+        <button 
+          *ngIf="book.isUnderRepair"
+          class="btn-return" 
+          (click)="returnFromRepair()">
+          Вернуть с ремонта
+        </button>
+      </div>
     </div>
   </div>
 
@@ -51,6 +72,14 @@
       <div class="detail-item" *ngIf="book.location_published">
         <span class="detail-label">Место издания</span>
         <span class="detail-value">{{ book.location_published }}</span>
+      </div>
+
+      <!-- Статус для сотрудников -->
+      <div class="detail-item" *ngIf="currentUser.isEmployee">
+        <span class="detail-label">Статус</span>
+        <span class="detail-value" [class.repair-status]="book.isUnderRepair">
+          {{ book.isUnderRepair ? 'В ремонте' : 'Доступна' }}
+        </span>
       </div>
     </div>
   </div>
