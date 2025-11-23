@@ -1,6 +1,6 @@
 .event-page-container {
   min-height: 100vh;
-  background: #f5f5f5;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 16px;
   /* Убираем padding-bottom так как кнопки теперь в потоке */
   padding-bottom: 80px;
@@ -15,6 +15,7 @@
   position: sticky;
   top: 0;
   z-index: 10;
+  border-radius: 10px 10px 0px 0px;
 }
 
 .back-button {
@@ -238,6 +239,7 @@
 
 .form-group {
   margin-bottom: 16px;
+
 }
 
 .form-label {

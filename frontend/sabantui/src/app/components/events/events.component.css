@@ -13,7 +13,8 @@
 
 .events-container {
   padding: 20px 0 80px;
-  background-color: #f7f7f7;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
 }
 
 .slider {
@@ -153,7 +154,7 @@ tui-pagination {
   padding: 14px 30px; /* Увеличиваем размер кнопки */
   font-size: 16px; /* Увеличиваем размер шрифта */
   border-radius: 8px; /* Убираем или увеличиваем радиус скругления */
-  background-color: #2563eb; /* Цвет фона */
+  background-color: #FF9B40		; /* Цвет фона */
   color: white; /* Цвет текста */
   border: none; /* Убираем рамку */
   cursor: pointer; /* Курсор при наведении */

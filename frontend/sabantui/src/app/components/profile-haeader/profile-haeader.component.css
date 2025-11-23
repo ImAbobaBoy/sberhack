@@ -1,5 +1,5 @@
 .profile-header {
-  background: linear-gradient(135deg, #667eea 0%, #97d2be 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   padding: 20px 16px;
   border-radius: 0 0 20px 20px;
@@ -71,13 +71,14 @@
   align-items: center;
   gap: 8px;
   padding: 10px 16px;
-  background-color: #007bff;
+  background-color: #FF9B40;
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   font-size: 14px;
   transition: background-color 0.3s;
+  margin-left: 80px;
 }
 
 .qr-button:hover {

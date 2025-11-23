@@ -9,12 +9,14 @@
   font-weight: 400;
   font-family: 'Manrope', sans-serif;
   padding: 0 20px;
+  color: white;
 }
 
 .books-container {
   height: 100%;
   padding: 20px 0 80px;
-  background-color: #f7f7f7;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
 }
 
 .slider {

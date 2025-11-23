@@ -3,8 +3,13 @@
   font-weight: 500;
 }
 
+.logo {
+  width: 150px;
+  height: 150px;
+}
+
 .mobile-header {
-  height: 70px;
+  height: 45px;
   width: 70%;
   padding: 20px 0px 0px 20px;
   z-index: 100;
