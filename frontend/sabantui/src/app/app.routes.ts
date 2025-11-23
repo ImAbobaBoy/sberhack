@@ -9,6 +9,7 @@ import {TtrComponent} from './components/ttr/ttr.component';
 import {MpPageComponent} from './components/mp-page/mp-page.component';
 import {BookPageComponent} from './components/book-page/book-page.component';
 import {CreateEventComponent} from './components/create-event/create-event.component';
+import { CoworkingComponent } from './components/coworking/coworking.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -21,7 +22,7 @@ export const routes: Routes = [
     { path: 'events', component: EventsComponent },
     { path: 'event/:id', component: MpPageComponent },
     { path: 'create-event', component: CreateEventComponent },
-    // { path: 'coworking', component: CoworkingComponent },
+    { path: 'coworking', component: CoworkingComponent },
     { path: 'profile', component: ProfileComponent },
     { path: 'email-step', component: EmailRegStepComponent },
     { path: 'code-verify', component: CodeVerifyStepComponent },
