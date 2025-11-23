@@ -21,4 +21,17 @@ class Book(BookBase, table=True):
     __tablename__ = "books"  # type: ignore
 
     id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
-    created_at: str = Field(default_factory=datetime.datetime.now)
+    created_at: datetime.datetime = Field(default_factory=datetime.datetime.now)
+
+
+class BookCreate(BookBase):
+    pass
+
+
+class BookPublic(BookBase):
+    id: uuid.UUID
+
+
+class BooksPublic(SQLModel):
+    data: list[BookPublic]
+    count: int

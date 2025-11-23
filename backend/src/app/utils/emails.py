@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 
 import emails
-import smtplib
 
 from src.app.core.settings import get_project_settings, get_smtp_settings
 from src.app.db.models.pincode import PinCode

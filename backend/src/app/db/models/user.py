@@ -19,7 +19,7 @@ class Role(Variants):
 class UserBase(SQLModel):
     name: str = Field(max_length=255, nullable=False)
     surname: str = Field(max_length=255, nullable=False)
-    patronymic: str = Field(max_length=255, nullable=False)
+    patronymic: str | None = Field(max_length=255, nullable=True)
     role: Role = Field(default=Role.USER)
     email: EmailStr = Field(max_length=255, unique=True, nullable=False, index=True)
     date_of_birth: datetime.date

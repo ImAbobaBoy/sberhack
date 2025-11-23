@@ -1,6 +1,8 @@
 from fastapi import APIRouter
 
 from src.app.api.routes import (
+    ai,
+    books,
     healthcheck,
     login,
     users,
@@ -17,4 +19,10 @@ api_router.include_router(
 )
 api_router.include_router(
     healthcheck.router, tags=["healthcheck"],
+)
+api_router.include_router(
+    ai.router, tags=["ai"], prefix="/ai",
+)
+api_router.include_router(
+    books.router, tags=["books"], prefix="/books",
 )

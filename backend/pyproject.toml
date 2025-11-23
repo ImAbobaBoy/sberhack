@@ -18,6 +18,8 @@ dependencies = [
     "pyjwt>=2.10.1",
     "ruff>=0.14.6",
     "sqlmodel>=0.0.27",
+    "torch>=2.9.1",
+    "transformers>=4.57.1",
     "uvicorn>=0.38.0",
 ]
 
