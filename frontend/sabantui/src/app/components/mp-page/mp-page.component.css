@@ -370,3 +370,94 @@
     font-size: 15px;
   }
 }
+
+/* Стили для формы регистрации */
+.registration-form {
+  width: 100%;
+}
+
+.form-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #374151;
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #10b981;
+  color: white;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+  margin-top: 16px;
+}
+
+.btn-submit:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 0 1px 4px rgba(16, 185, 129, 0.4);
+}
+
+.btn-submit:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Стили для кнопок формы регистрации */
+.form-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.form-buttons .btn-submit {
+  flex: 2;
+  margin-top: 0;
+}
+
+.btn-cancel-form {
+  flex: 1;
+  padding: 14px 20px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: white;
+  color: #374151;
+}
+
+.btn-cancel-form:active {
+  background: #f9fafb;
+  transform: translateY(1px);
+}
+
+/* Адаптивность для формы регистрации */
+@media (max-width: 340px) {
+  .form-buttons {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .form-buttons .btn-submit,
+  .btn-cancel-form {
+    width: 100%;
+  }
+  
+  .btn-submit {
+    padding: 12px 16px;
+    font-size: 15px;
+  }
+  
+  .form-title {
+    font-size: 15px;
+  }
+}

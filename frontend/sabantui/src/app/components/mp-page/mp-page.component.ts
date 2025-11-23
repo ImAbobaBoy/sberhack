@@ -33,9 +33,15 @@ interface User {
 export class MpPageComponent implements OnInit {
   event!: Event;
   isRegistered = false;
+  isAuthorized = true; // Новый флаг авторизации
   showNotification = false;
   notificationMessage = '';
-  showButton = true;
+  showRegistrationForm = false; // Флаг для показа формы регистрации
+  
+  // Данные для формы регистрации
+  registrationEmail: string = '';
+  registrationFirstName: string = '';
+  registrationLastName: string = '';
   
   // Мок текущего пользователя
   currentUser: User = {
@@ -43,7 +49,7 @@ export class MpPageComponent implements OnInit {
     firstName: 'Иван',
     lastName: 'Петров',
     email: 'ivan.petrov@library.ru',
-    isEmployee: true
+    isEmployee: false
   };
 
   // Моки мероприятий
@@ -85,6 +91,15 @@ export class MpPageComponent implements OnInit {
     const eventId = Number(this.route.snapshot.paramMap.get('id'));
     this.event = this.events.find(e => e.id === eventId) || this.events[0];
     this.initializeEditForm();
+    
+    // Изначально проверяем авторизацию
+    // Если пользователь не авторизован, показываем только кнопку "Записаться"
+    // Если авторизован - проверяем статус записи
+    if (this.isAuthorized) {
+      // Здесь должна быть логика проверки, записан ли пользователь на мероприятие
+      // Пока используем мок
+      this.isRegistered = false; // или true в зависимости от реальных данных
+    }
   }
 
   goBack(): void {
@@ -106,8 +121,15 @@ export class MpPageComponent implements OnInit {
     }).format(date);
   }
 
-  // Для обычных пользователей - запись на мероприятие
+  // Переписал метод для неавторизованных пользователей
   toggleRegistration() {
+    if (!this.isAuthorized) {
+      // Для неавторизованных - показываем форму регистрации
+      this.showRegistrationForm = true;
+      return;
+    }
+    
+    // Для авторизованных - стандартное поведение
     if (!this.isRegistered) {
       this.isRegistered = true;
       this.notificationMessage = 'Вы записаны на данное мероприятие';
@@ -118,6 +140,36 @@ export class MpPageComponent implements OnInit {
     
     this.showNotification = true;
     this.hideNotificationAfterDelay();
+  }
+
+  // Обновил метод отправки формы регистрации
+  submitRegistration() {
+    if (this.registrationEmail && this.registrationFirstName && this.registrationLastName) {
+      // После успешной регистрации:
+      // 1. Скрываем форму
+      this.showRegistrationForm = false;
+      // 2. Показываем сообщение об успехе
+      this.notificationMessage = 'Вы успешно зарегистрировались и записаны на мероприятие';
+      this.showNotification = true;
+      this.hideNotificationAfterDelay();
+      
+      // 3. Сбрасываем форму
+      this.registrationEmail = '';
+      this.registrationFirstName = '';
+      this.registrationLastName = '';
+      
+      // Важно: не меняем isAuthorized и isRegistered, так как 
+      // после регистрации мы не знаем кому отменять запись
+      // Пользователь снова видит только кнопку "Записаться"
+    }
+  }
+
+  // Добавил метод для отмены формы регистрации
+  cancelRegistration() {
+    this.showRegistrationForm = false;
+    this.registrationEmail = '';
+    this.registrationFirstName = '';
+    this.registrationLastName = '';
   }
 
   // Для сотрудников - редактирование мероприятия
