@@ -60,7 +60,7 @@ export class EventsComponent {
       start_time: new Date('2024-02-01T18:00:00'),
       end_time: new Date('2024-02-01T20:00:00'),
       location: 'Читальный зал',
-      image: 'assets/event1.jpg'
+      image: 'assets/lit_vecher.jpg'
     },
     {
       id: 2,
@@ -69,7 +69,7 @@ export class EventsComponent {
       start_time: new Date('2024-02-05T19:30:00'),
       end_time: new Date('2024-02-05T21:30:00'),
       location: 'Конференц-зал',
-      image: 'assets/event2.jpg'
+      image: 'assets/author_meet.jpg'
     }
   ];
 
