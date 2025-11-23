@@ -74,7 +74,7 @@ export class BooksComponent {
       genre: 'Роман',
       year_published: 1967,
       location_published: 'Москва',
-      image: 'assets/book1.jpg',
+      image: 'assets/master_i_margarita.jpg',
       category: 'Романы'
     },
     {
@@ -86,7 +86,7 @@ export class BooksComponent {
       genre: 'Психологический роман',
       year_published: 1866,
       location_published: 'Санкт-Петербург',
-      image: 'assets/book2.jpg',
+      image: 'assets/prestup_i_nakaz.jpg',
       category: 'Романы'
     },
     {
@@ -98,7 +98,7 @@ export class BooksComponent {
       genre: 'Антиутопия',
       year_published: 1949,
       location_published: 'Лондон',
-      image: 'assets/book3.jpg',
+      image: 'assets/1984.jpg',
       category: 'Антиутопия'
     }
   ];

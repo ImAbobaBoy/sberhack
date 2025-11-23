@@ -1,5 +1,5 @@
 import { Component, OnInit, signal, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { 
   TuiButtonModule,
@@ -24,8 +24,9 @@ interface Book {
     RouterModule,
     TuiButtonModule,
     TuiLoaderModule,
-    TuiBadgeModule
-  ],
+    TuiBadgeModule,
+    NgOptimizedImage
+],
   templateUrl: './ttr.component.html',
   styleUrls: ['./ttr.component.css']
 })
@@ -39,7 +40,7 @@ export class TtrComponent implements OnInit, AfterViewInit {
       author: 'Михаил Булгаков',
       description: 'Роман о любви, искусстве и борьбе с цензурой в советской Москве. Мистическая история, переплетающая реальность и вымысел.',
       year: 1966,
-      image: '/assets/book1.jpg'
+      image: '/assets/master_i_margarita.jpg'
     },
     {
       id: 2,
@@ -47,7 +48,7 @@ export class TtrComponent implements OnInit, AfterViewInit {
       author: 'Фёдор Достоевский',
       description: 'Психологический роман о бывшем студенте Родионе Раскольникове, совершившем убийство и пытающемся оправдать свой поступок.',
       year: 1866,
-      image: '/assets/book2.jpg'
+      image: '/assets/prestup_i_nakaz.jpg'
     },
     {
       id: 3,
@@ -55,7 +56,7 @@ export class TtrComponent implements OnInit, AfterViewInit {
       author: 'Джордж Оруэлл',
       description: 'Антиутопический роман о тоталитарном обществе под постоянным контролем Большого Брата.',
       year: 1949,
-      image: '/assets/book3.jpg'
+      image: '/assets/1984.jpg'
     }
   ];
 

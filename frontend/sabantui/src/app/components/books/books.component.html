@@ -10,7 +10,7 @@
       <ng-container *ngFor="let book of books">
         <tui-island *tuiItem>
           <div class="carousel-item" (click)="goToBookPage(book.id)">
-            <img [src]="book.image" alt="Book Image" class="book-image" />
+            <img [ngSrc]="book.image" alt="Book Image" class="book-image" width="100px" height="90px" />
             <div class="book-info">
               <h3>{{ book.title }}</h3>
               <p>{{ book.author }}</p>

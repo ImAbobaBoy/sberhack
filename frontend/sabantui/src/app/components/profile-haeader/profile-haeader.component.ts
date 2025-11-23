@@ -26,7 +26,7 @@ export class ProfileHeaderComponent {
   generateQrCode() {
     // В реальном приложении здесь будет логика генерации QR-кода
     // Например, с помощью библиотеки qrcode
-    const qrData = `http://localhost:4200/reader-card?email=${encodeURIComponent(this.email)}`;
+    const qrData = `https://r21dh5gq-4200.euw.devtunnels.ms/reader-card?email=${encodeURIComponent(this.email)}`;
     
     // Для демонстрации создаем фиктивный QR-код
     // В реальном приложении замените на настоящую генерацию QR
