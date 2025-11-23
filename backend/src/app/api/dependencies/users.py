@@ -11,7 +11,7 @@ from src.app.api.dependencies.common import SessionDep, TokenDep
 from src.app.core import security
 from src.app.core.settings import get_project_settings
 from src.app.crud import user as user_crud
-from src.app.db.models.user import Role, User, UserPublic
+from src.app.db.models.user import Role, User
 from src.app.db.schemas import TokenPayload
 
 project_settings = get_project_settings()

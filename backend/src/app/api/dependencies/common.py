@@ -15,17 +15,17 @@ reusable_oauth2 = OAuth2PasswordBearer(
     tokenUrl=f"{project_settings.API_V1_STR}/login/access-token",
 )
 
-async def get_db() -> AsyncGenerator[AsyncSession, Any, None]:
+async def get_db() -> AsyncGenerator[AsyncSession, Any]:
     async with AsyncSession(async_engine) as session:
         yield session
 
 @asynccontextmanager
-async def get_db_session() -> AsyncGenerator[AsyncSession, Any, None]:
+async def get_db_session() -> AsyncGenerator[AsyncSession, Any]:
     session = AsyncSession(async_engine)
     try:
         yield session
     finally:
         await session.close()
 
-type SessionDep = Annotated[AsyncSession, Depends(get_db)]
-type TokenDep = Annotated[str, Depends(reusable_oauth2)]
+SessionDep = Annotated[AsyncSession, Depends(get_db)]
+TokenDep = Annotated[str, Depends(reusable_oauth2)]

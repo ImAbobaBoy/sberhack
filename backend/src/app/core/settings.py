@@ -39,8 +39,10 @@ class PostgresSettings(BaseSettings):
 class ProjectSettings(BaseSettings):
     NAME: str
     FRONTEND_HOST: str
+    API_V1_STR: str
     SECRET_KEY: str
     ACCESS_TOKEN_EXPIRE_MINUTES: int
+    PINCODE_EXPIRE_MINUTES: int
     DEFAULT_QUERY_LIMIT: int = Field(default=100)
 
     model_config = SettingsConfigDict(

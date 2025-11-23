@@ -3,7 +3,7 @@ services:
     image: postgres:15
     container_name: db
     env_file:
-      - ./backend/.env
+      - ./.env
     environment:
       POSTGRES_SERVER: ${POSTGRES_SERVER}
       POSTGRES_PORT: ${POSTGRES_PORT}
@@ -33,7 +33,7 @@ services:
     ports:
       - "8000:8000"
     env_file:
-      - ./backend/.env
+      - ./.env
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://localhost:8000/api/v1/health || exit 1"]
       interval: 10s
@@ -53,7 +53,7 @@ services:
       db:
         condition: service_healthy
     env_file:
-      - ./backend/.env
+      - ./.env
     command: alembic upgrade head
 
   # frontend:

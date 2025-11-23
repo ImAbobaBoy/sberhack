@@ -11,7 +11,7 @@ from src.app.core.settings import get_project_settings
 project_settings = get_project_settings()
 
 @asynccontextmanager
-async def lifespan(app: FastAPI) -> AsyncGenerator[None, None, None]:
+async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     """
     Lifespan context manager for FastAPI application.
     This function is used to manage the startup and shutdown events of the FastAPI application.

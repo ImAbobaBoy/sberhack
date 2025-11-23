@@ -1,10 +1,14 @@
 import datetime
 import uuid
+from typing import TYPE_CHECKING
 
 from pydantic import EmailStr, field_serializer
-from sqlmodel import Field, SQLModel
+from sqlmodel import Field, Relationship, SQLModel
 
 from src.app.const import Variants
+
+if TYPE_CHECKING:
+    from src.app.db.models.pincode import PinCode
 
 
 class Role(Variants):
@@ -20,10 +24,6 @@ class UserBase(SQLModel):
     email: EmailStr = Field(max_length=255, unique=True, nullable=False, index=True)
     date_of_birth: datetime.date
 
-    @field_serializer("email")
-    def serialize_email(self, email: EmailStr) -> str:
-        return email.lower()
-
 
 class User(UserBase, table=True):
     __tablename__ = "users" # type: ignore
@@ -31,9 +31,13 @@ class User(UserBase, table=True):
     id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
     created_at: datetime.datetime = Field(default_factory=datetime.datetime.now)
 
+    pincodes: list["PinCode"] = Relationship(back_populates="user")
+
 
 class UserCreate(UserBase):
-    ...
+    @field_serializer("email")
+    def serialize_email(self, email: EmailStr) -> str:
+        return email.lower()
 
 
 class UserUpdate(SQLModel):

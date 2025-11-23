@@ -44,7 +44,7 @@ class OAuth2PasswordRequestFormWithLoginType:
     def __init__(
         self,
         username: str = Form(...),
-        password: str = Form(...),
+        code: str = Form(...),
         grant_type: str | None = Form(None),
         scope: str = Form(""),
         client_id: str | None = Form(None),
@@ -52,7 +52,7 @@ class OAuth2PasswordRequestFormWithLoginType:
         login_type: LoginType = Form(default=LoginType.user),  # noqa: B008
     ) -> None:
         self.username = username
-        self.password = password
+        self.code = code
         self.grant_type = grant_type
         self.scopes = scope.split()
         self.client_id = client_id

@@ -1,11 +1,10 @@
 from dataclasses import dataclass
-from pathlib import Path
-from typing import Any
 
 import emails
-from jinja2 import Template
+import smtplib
 
 from src.app.core.settings import get_project_settings, get_smtp_settings
+from src.app.db.models.pincode import PinCode
 
 smtp_settings = get_smtp_settings()
 project_settings = get_project_settings()
@@ -17,20 +16,12 @@ class EmailData:
     subject: str
 
 
-async def render_email_template(*, template_name: str, context: dict[str, Any]) -> str:
-    template_str = (
-        Path(__file__).parent.parent / "email-templates" / "build" / template_name
-    ).read_text()
-    html_content = Template(template_str).render(context)
-    return html_content
-
-
 async def send_email(
     *,
     email_to: str,
     subject: str = "",
     html_content: str = "",
-) -> None:
+):
     message = emails.Message(
         subject=subject,
         html=html_content,
@@ -39,20 +30,13 @@ async def send_email(
     smtp_options = {"host": smtp_settings.HOST, "port": smtp_settings.PORT}
     smtp_options["user"] = smtp_settings.USER
     smtp_options["password"] = smtp_settings.PASSWORD
-    smtp_options["tls"] = True
+    smtp_options["tls"] = smtp_settings.TLS
+    print(smtp_options)
     response = message.send(to=email_to, smtp=smtp_options)
     return response
 
-async def generate_reset_password_email(email_to: str, email: str, token: str) -> EmailData:
-    subject = f"{project_settings.NAME} - Password recovery for user {email}"
-    link = f"{project_settings.FRONTEND_HOST}/reset-password?token={token}"
-    html_content = await render_email_template(
-        template_name="reset_password.html",
-        context={
-            "project_name": project_settings.NAME,
-            "username": email,
-            "email": email_to,
-            "link": link,
-        },
-    )
-    return EmailData(html_content=html_content, subject=subject)
+async def send_code_on_email(email_to: str, code: PinCode) -> None:
+    subject = f"{project_settings.NAME} - Ваш пин код"
+    html_content = f"<p>Ваш пин код: <strong>{code.code}</strong></p>"
+    response = await send_email(email_to=email_to, subject=subject, html_content=html_content)
+    print(f"Email sent status: {response}")

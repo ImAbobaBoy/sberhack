@@ -1,5 +1,6 @@
-from backend.app.utils.healthcheck import check_postgres
 from fastapi import APIRouter, HTTPException
+
+from src.app.utils.healthcheck import check_postgres
 
 router = APIRouter()
 

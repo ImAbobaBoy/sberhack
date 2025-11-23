@@ -17,7 +17,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 COPY ./Makefile /app/Makefile
 COPY backend/src/app /app/backend/src/app
 COPY backend/src/migrations /app/src/migrations
-COPY backend/.env /app/
+COPY .env /app/
 
 # Миграции
 FROM python:3.12-slim AS migrations
